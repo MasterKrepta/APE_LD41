@@ -9,7 +9,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(EnemyState))]
-public class Enemy : MonoBehaviour, IDestructable {
+public class Enemy : MonoBehaviour {
 
     bool acceptEnemyMovement = false;
 
@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour, IDestructable {
 
     [SerializeField]Transform barrel;
 
-    bool canAttack = true;
+    
     // Use this for initialization
     void Start () {
         sphereCollider = GetComponent<SphereCollider>();
@@ -38,8 +38,9 @@ public class Enemy : MonoBehaviour, IDestructable {
 	// Update is called once per frame
 	void Update () {
         acceptEnemyMovement = TurnManager.Instance.AcceptAIInput();
-        if (acceptEnemyMovement) {
-            agent.Resume();
+        if (acceptEnemyMovement && TurnManager.Instance.canAttack) {
+            agent.isStopped = false;
+            
             switch (enemyState.Current) {
                 case EnemyState.State.PATROL:
                     Patrol();
@@ -50,25 +51,29 @@ public class Enemy : MonoBehaviour, IDestructable {
             }
         }
         else {
-            agent.Stop();
+            agent.isStopped = true;
         }
         
         
     }
 
     private void Attacking() {
+
         Transform player = FindObjectOfType<FirstPersonController>().transform;
-        agent.SetDestination(player.position);
-        float distToPlayer = Vector3.Distance(transform.position, player.position);
-        if(distToPlayer <= attackRadius && canAttack) {
-            canAttack = false;
-            //RESET THIS EACH TURN!!! DONT DO A FORGET
-            ThrowAtPlayer();
+        if(player != null) {
+            transform.LookAt(player);
+            agent.SetDestination(player.position);
+            float distToPlayer = Vector3.Distance(transform.position, player.position);
+            if (distToPlayer <= attackRadius && TurnManager.Instance.canAttack) {
+                TurnManager.Instance.HasFired();
+                ThrowAtPlayer();
+            }
         }
+        
     }
 
     private void ThrowAtPlayer() {
-        
+        agent.isStopped = true;
         GameObject go = Instantiate(banana, barrel.position, Quaternion.identity);
         go.GetComponent<Rigidbody>().AddForce(barrel.transform.forward * strength, ForceMode.Impulse);
     }
@@ -88,9 +93,7 @@ public class Enemy : MonoBehaviour, IDestructable {
         return hit.position;
     }
 
-    public void Kill() {
-        Destroy(gameObject);
-    }
+
 
     private void OnTriggerEnter(Collider other) {
         if(other.GetComponent<FirstPersonController>() != null) {
@@ -108,4 +111,6 @@ public class Enemy : MonoBehaviour, IDestructable {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRadius);
     }
+
+    
 }

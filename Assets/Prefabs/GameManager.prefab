@@ -51,7 +51,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3211ff7a2eb2f0446a937fbf642818a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeCamera: {fileID: 0}
+  PlayerCam: {fileID: 0}
+  EnemyCam: {fileID: 0}
   txtRemaining: {fileID: 0}
-  timeToNextTurn: 7
+  timeToNextTurn: 10
   playerTurn: 1
   enemyTurn: 0
+  IsTesting: 1

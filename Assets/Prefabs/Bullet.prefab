@@ -113,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effect: {fileID: 1368683275452956, guid: bf7e0dafafa176c4790519d00548187f, type: 2}
   explodeTime: 1
-  boomBoomRadius: 5
+  boomBoomRadius: 3
 --- !u!135 &135883324045147658
 SphereCollider:
   m_ObjectHideFlags: 1

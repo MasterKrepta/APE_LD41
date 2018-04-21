@@ -27,7 +27,11 @@ public class TurnManager : MonoBehaviour {
     #endregion
 
     #region UI Stuff
-    
+    [SerializeField] Camera activeCamera;
+    [SerializeField] Camera PlayerCam;
+    [SerializeField] Camera EnemyCam;
+    bool camSwitch = false;
+
     [SerializeField]Text txtRemaining;
     #endregion
 
@@ -37,15 +41,16 @@ public class TurnManager : MonoBehaviour {
     [SerializeField] bool enemyTurn = false;
 
     public bool IsTesting = false;
+    public bool canAttack = true;
 
     private void Start() {
         ResetClock();
+        SetCamera();
     }
 
     void Update () {
         if (!IsTesting) {
             currentTime -= Time.deltaTime;
-            FormatTime();
             txtRemaining.text = "Time Remaining: " + (currentTime % 60).ToString("00");
             if (currentTime <= 0) {
                 ResetClock();
@@ -58,9 +63,12 @@ public class TurnManager : MonoBehaviour {
         }
         
 	}
+    public void HasFired() {
+        canAttack = false;
+    }
 
-    private void FormatTime() {
-        float seconds = Mathf.Floor(currentTime % 60);
+    void ResetCanFire() {
+        canAttack = true;
     }
 
     private void ResetClock() {
@@ -70,6 +78,15 @@ public class TurnManager : MonoBehaviour {
     public void NewTurn() {
         playerTurn = !playerTurn;
         enemyTurn = !enemyTurn;
+        SetCamera();
+        ResetCanFire();
+    }
+
+    private void SetCamera() {
+        camSwitch = !camSwitch;
+        PlayerCam.gameObject.SetActive(camSwitch);
+        EnemyCam.gameObject.SetActive(!camSwitch);
+
     }
 
     public bool AcceptInput() {

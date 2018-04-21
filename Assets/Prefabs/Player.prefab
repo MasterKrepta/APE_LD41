@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 54646249054345610}
   - component: {fileID: 82428646841489770}
   - component: {fileID: 114270791248712222}
+  - component: {fileID: 114587497708663524}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -257,6 +258,20 @@ MonoBehaviour:
   banana: {fileID: 1225348670505796, guid: 4e9ba6713dd48794eb24dbb58d7b88f2, type: 2}
   strength: 10
   barrel: {fileID: 4418147975888956}
+--- !u!114 &114587497708663524
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1688492438770704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 517729571f8918a4b870a0399c005400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 10
+  healthSlider: {fileID: 0}
 --- !u!114 &114839380220191146
 MonoBehaviour:
   m_ObjectHideFlags: 1
