@@ -5,25 +5,28 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityStandardAssets.Characters.FirstPerson;
 
+
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(EnemyState))]
 public class Enemy : MonoBehaviour, IDestructable {
-    
-    [SerializeField]
-    float viewRadius = 15f;
+
+    bool acceptEnemyMovement = false;
+
     SphereCollider sphereCollider;
     EnemyState enemyState;
-
-    [SerializeField]
-    float patrolDistance = 20f;
-
-    [SerializeField]
-    float attackRadius = 10f;
-
     NavMeshAgent agent;
 
+    [SerializeField] float viewRadius = 15f;
+    [SerializeField] float patrolDistance = 20f;
+    [SerializeField] float attackRadius = 10f;
+    [SerializeField] GameObject banana;
 
+    [SerializeField]float strength = 10;
+
+    [SerializeField]Transform barrel;
+
+    bool canAttack = true;
     // Use this for initialization
     void Start () {
         sphereCollider = GetComponent<SphereCollider>();
@@ -34,26 +37,55 @@ public class Enemy : MonoBehaviour, IDestructable {
 	
 	// Update is called once per frame
 	void Update () {
-        switch (enemyState.Current) {
-            case EnemyState.State.PATROL:
-                Patrol();
-                break;
-            case EnemyState.State.ATTACKING:
-                Attack();
-                break;
+        acceptEnemyMovement = TurnManager.Instance.AcceptAIInput();
+        if (acceptEnemyMovement) {
+            agent.Resume();
+            switch (enemyState.Current) {
+                case EnemyState.State.PATROL:
+                    Patrol();
+                    break;
+                case EnemyState.State.ATTACKING:
+                    Attacking();
+                    break;
+            }
         }
-	}
+        else {
+            agent.Stop();
+        }
+        
+        
+    }
 
-    private void Attack() {
+    private void Attacking() {
         Transform player = FindObjectOfType<FirstPersonController>().transform;
         agent.SetDestination(player.position);
+        float distToPlayer = Vector3.Distance(transform.position, player.position);
+        if(distToPlayer <= attackRadius && canAttack) {
+            canAttack = false;
+            //RESET THIS EACH TURN!!! DONT DO A FORGET
+            ThrowAtPlayer();
+        }
+    }
+
+    private void ThrowAtPlayer() {
+        
+        GameObject go = Instantiate(banana, barrel.position, Quaternion.identity);
+        go.GetComponent<Rigidbody>().AddForce(barrel.transform.forward * strength, ForceMode.Impulse);
     }
 
     private void Patrol() {
-        Vector3 startPos = transform.position;
-        Vector3 targetPos = new Vector3(transform.position.x, 0, transform.position.z + patrolDistance);
-        agent.SetDestination(targetPos);
+        Vector3 newDest = GetNewDestination();
+        agent.SetDestination(newDest);
 
+    }
+
+    Vector3 GetNewDestination() {
+        Vector3 randPos = UnityEngine.Random.insideUnitSphere * patrolDistance;
+        randPos += transform.position;
+
+        NavMeshHit hit;
+        NavMesh.SamplePosition(randPos, out hit, patrolDistance, 1);
+        return hit.position;
     }
 
     public void Kill() {
@@ -70,5 +102,10 @@ public class Enemy : MonoBehaviour, IDestructable {
         if (other.GetComponent<FirstPersonController>() != null) {
             enemyState.ChangeState();
         }
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRadius);
     }
 }

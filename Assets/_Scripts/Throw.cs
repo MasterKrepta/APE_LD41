@@ -7,14 +7,10 @@ public class Throw : MonoBehaviour {
 
     bool acceptPlayerInput = true;
     FirstPersonController FPS;
-    [SerializeField]
-    GameObject bannana;
 
-    [SerializeField]
-    float strength = 10;
-
-    [SerializeField]
-    Transform barrel;
+    [SerializeField]GameObject banana;
+    [SerializeField]float strength = 10;
+    [SerializeField]Transform barrel;
 
     private void Awake() {
         FPS = GetComponent<FirstPersonController>();
@@ -30,7 +26,7 @@ public class Throw : MonoBehaviour {
         if (acceptPlayerInput) {
             FPS.enabled = true;
             if (Input.GetMouseButtonDown(0)) {
-                GameObject go = Instantiate(bannana, barrel.position, Quaternion.identity);
+                GameObject go = Instantiate(banana, barrel.position, Quaternion.identity);
                 go.GetComponent<Rigidbody>().AddForce(barrel.transform.forward * strength, ForceMode.Impulse);
             }
         }
