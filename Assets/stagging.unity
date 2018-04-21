@@ -6948,7 +6948,7 @@ Prefab:
     - target: {fileID: 114489927499820888, guid: 7c1231a914dbfa24dbdccd121a30482c,
         type: 2}
       propertyPath: IsTesting
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114489927499820888, guid: 7c1231a914dbfa24dbdccd121a30482c,
         type: 2}

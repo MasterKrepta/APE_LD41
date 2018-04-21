@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour {
 
     private void ThrowAtPlayer() {
         agent.isStopped = true;
-        GameObject go = Instantiate(banana, barrel.position, Quaternion.identity);
+        GameObject go = Instantiate(banana, barrel.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
         go.GetComponent<Rigidbody>().AddForce(barrel.transform.forward * strength, ForceMode.Impulse);
     }
 

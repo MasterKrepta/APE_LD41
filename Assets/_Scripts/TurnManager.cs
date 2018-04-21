@@ -46,7 +46,17 @@ public class TurnManager : MonoBehaviour {
     private void Start() {
         ResetClock();
         SetCamera();
+        
     }
+
+    private void DestroyActiveBananas() {
+        ExplodeOnNewTurn[] active = FindObjectsOfType<ExplodeOnNewTurn>();
+        foreach (var banana in active) {
+            banana.ExplodeAtStartOfTurn();
+        }
+    }
+
+    
 
     void Update () {
         if (!IsTesting) {
@@ -60,6 +70,7 @@ public class TurnManager : MonoBehaviour {
         else {
             playerTurn = true;
             enemyTurn = true;
+            canAttack = true;
         }
         
 	}
@@ -80,6 +91,7 @@ public class TurnManager : MonoBehaviour {
         enemyTurn = !enemyTurn;
         SetCamera();
         ResetCanFire();
+        DestroyActiveBananas();
     }
 
     private void SetCamera() {

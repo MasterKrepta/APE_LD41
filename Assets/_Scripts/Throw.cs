@@ -27,7 +27,7 @@ public class Throw : MonoBehaviour {
             FPS.enabled = true;
             if (Input.GetMouseButtonDown(0) && TurnManager.Instance.canAttack) {
                 TurnManager.Instance.HasFired();
-                GameObject go = Instantiate(banana, barrel.position, Quaternion.identity);
+                GameObject go = Instantiate(banana, barrel.position, Quaternion.Euler(0,0,Random.Range(0,360)));
                 go.GetComponent<Rigidbody>().AddForce(barrel.transform.forward * strength, ForceMode.Impulse);
             }
         }
