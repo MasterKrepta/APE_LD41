@@ -9,7 +9,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 [RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(EnemyState))]
 public class Enemy : MonoBehaviour, IDestructable {
-
+    
     [SerializeField]
     float viewRadius = 15f;
     SphereCollider sphereCollider;

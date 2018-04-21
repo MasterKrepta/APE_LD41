@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class TurnManager : MonoBehaviour {
 
     #region Singleton
@@ -24,14 +25,19 @@ public class TurnManager : MonoBehaviour {
     #endregion
         
     public bool playerTurn = true;
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    public void NewTurn() {
+        playerTurn = !playerTurn;
+    }
+
+    public bool AcceptInput() {
+        if (playerTurn) {
+            return true;
+        }else
+            return false;
+    }
 }

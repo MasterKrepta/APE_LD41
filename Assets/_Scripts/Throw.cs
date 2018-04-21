@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class Throw : MonoBehaviour {
 
+    bool acceptPlayerInput = true;
+    FirstPersonController FPS;
     [SerializeField]
     GameObject bannana;
 
@@ -13,16 +16,26 @@ public class Throw : MonoBehaviour {
     [SerializeField]
     Transform barrel;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	    if(Input.GetMouseButtonDown(0)) {
-             GameObject go = Instantiate(bannana, barrel.position, Quaternion.identity);
-            go.GetComponent<Rigidbody>().AddForce(barrel.transform.forward * strength, ForceMode.Impulse);
+    private void Awake() {
+        FPS = GetComponent<FirstPersonController>();
+    }
+
+    // Update is called once per frame
+    void Update () {
+        if (Input.GetKeyDown(KeyCode.Z)) { // FOR TESTING ONLY!!!! DONT KEEP THIS!!!!
+            TurnManager.Instance.NewTurn();
+        }
+
+        acceptPlayerInput = TurnManager.Instance.AcceptInput();
+        if (acceptPlayerInput) {
+            FPS.enabled = true;
+            if (Input.GetMouseButtonDown(0)) {
+                GameObject go = Instantiate(bannana, barrel.position, Quaternion.identity);
+                go.GetComponent<Rigidbody>().AddForce(barrel.transform.forward * strength, ForceMode.Impulse);
+            }
+        }
+        else {
+            FPS.enabled = false;
         }
 	}
 }
