@@ -20,7 +20,10 @@ public class Health : MonoBehaviour, IDestructable {
             Kill();
         }
     }
-
+    private void OnEnable() {
+        //Debug.Log("enabled on " + this.gameObject);
+       
+    }
     // Use this for initialization
     void Start () {
         currentHealth = maxHealth;

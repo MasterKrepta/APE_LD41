@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplodeOnNewTurn : MonoBehaviour {
+public class enemyBoom : MonoBehaviour {
     
     [SerializeField]GameObject effect;
 
@@ -38,7 +38,7 @@ public class ExplodeOnNewTurn : MonoBehaviour {
             IDestructable destructable = collider.GetComponent<IDestructable>();
             
             if (destructable != null) {
-                
+            
                 destructable.TakeDamage(1);
             }
         }

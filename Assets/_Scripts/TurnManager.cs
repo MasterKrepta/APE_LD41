@@ -55,7 +55,11 @@ public class TurnManager : MonoBehaviour {
 
     private void DestroyActiveBananas() {
         ExplodeOnNewTurn[] active = FindObjectsOfType<ExplodeOnNewTurn>();
+        enemyBoom[] enemyBoom = FindObjectsOfType<enemyBoom>();
         foreach (var banana in active) {
+            banana.ExplodeAtStartOfTurn();
+        }
+        foreach (var banana in enemyBoom) {
             banana.ExplodeAtStartOfTurn();
         }
     }
@@ -93,8 +97,9 @@ public class TurnManager : MonoBehaviour {
     public void NewTurn() {
         playerTurn = !playerTurn;
         enemyTurn = !enemyTurn;
-        DestroyActiveBananas();
+        
         SetCamera();
+        DestroyActiveBananas();
         ResetCanFire();
         
         enemy.OnNewTurn();
@@ -104,8 +109,9 @@ public class TurnManager : MonoBehaviour {
         camSwitch = !camSwitch;
         PlayerCam.gameObject.SetActive(camSwitch);
         EnemyCam.gameObject.SetActive(!camSwitch);
-        playerHealth.enabled = camSwitch;
-        enemyHealth.enabled = !camSwitch;
+        //playerHealth.enabled = camSwitch;
+        //enemyHealth.enabled = !camSwitch;
+        //NOTE bullets have been seperated due to a late minute bug - IS NOW LAYER BASED INSIDE OF UNITY
 
     }
 
