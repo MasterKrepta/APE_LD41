@@ -879,32 +879,11 @@ Prefab:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1524359859}
-    - target: {fileID: 114200460351622106, guid: d66e3c7d9e4079d408b6eb97a897ead4,
+    - target: {fileID: 114514243440893234, guid: d66e3c7d9e4079d408b6eb97a897ead4,
         type: 2}
-      propertyPath: patrolDistance
-      value: 30
+      propertyPath: maxHealth
+      value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 195589049024082410, guid: d66e3c7d9e4079d408b6eb97a897ead4,
-        type: 2}
-      propertyPath: m_StoppingDistance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 195589049024082410, guid: d66e3c7d9e4079d408b6eb97a897ead4,
-        type: 2}
-      propertyPath: m_Acceleration
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114200460351622106, guid: d66e3c7d9e4079d408b6eb97a897ead4,
-        type: 2}
-      propertyPath: viewRadius
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 114200460351622106, guid: d66e3c7d9e4079d408b6eb97a897ead4,
-        type: 2}
-      propertyPath: banana
-      value: 
-      objectReference: {fileID: 1225348670505796, guid: c041dbaa33ea70149b46abd82192180b,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d66e3c7d9e4079d408b6eb97a897ead4, type: 2}
   m_IsPrefabParent: 0
@@ -1605,11 +1584,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e5e9497899ed96c4192c26e3c9debb41, type: 2}
   m_IsPrefabParent: 0
---- !u!20 &781326912 stripped
-Camera:
-  m_PrefabParentObject: {fileID: 20279514487250332, guid: 65f3778f4f6017d4ba942b975190e7e1,
-    type: 2}
-  m_PrefabInternal: {fileID: 1969383477}
 --- !u!1 &840950242
 GameObject:
   m_ObjectHideFlags: 0
@@ -2904,11 +2878,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4298449314701788, guid: 2651d4ac71912fa43a5ffee46e500340,
     type: 2}
   m_PrefabInternal: {fileID: 1366378793}
---- !u!20 &1373615497 stripped
-Camera:
-  m_PrefabParentObject: {fileID: 20796612463744980, guid: d66e3c7d9e4079d408b6eb97a897ead4,
-    type: 2}
-  m_PrefabInternal: {fileID: 445929308}
 --- !u!1001 &1399243019
 Prefab:
   m_ObjectHideFlags: 0
@@ -4716,6 +4685,11 @@ Prefab:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1237038398}
+    - target: {fileID: 114587497708663524, guid: 65f3778f4f6017d4ba942b975190e7e1,
+        type: 2}
+      propertyPath: maxHealth
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 65f3778f4f6017d4ba942b975190e7e1, type: 2}
   m_IsPrefabParent: 0
@@ -5025,36 +4999,11 @@ Prefab:
         type: 2}
       propertyPath: PlayerCam
       value: 
-      objectReference: {fileID: 781326912}
+      objectReference: {fileID: 0}
     - target: {fileID: 114489927499820888, guid: 7c1231a914dbfa24dbdccd121a30482c,
         type: 2}
       propertyPath: EnemyCam
       value: 
-      objectReference: {fileID: 1373615497}
-    - target: {fileID: 114489927499820888, guid: 7c1231a914dbfa24dbdccd121a30482c,
-        type: 2}
-      propertyPath: txtRemaining
-      value: 
-      objectReference: {fileID: 1778463111}
-    - target: {fileID: 114489927499820888, guid: 7c1231a914dbfa24dbdccd121a30482c,
-        type: 2}
-      propertyPath: IsTesting
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114489927499820888, guid: 7c1231a914dbfa24dbdccd121a30482c,
-        type: 2}
-      propertyPath: timeToNextTurn
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114489927499820888, guid: 7c1231a914dbfa24dbdccd121a30482c,
-        type: 2}
-      propertyPath: enemyTurn
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114489927499820888, guid: 7c1231a914dbfa24dbdccd121a30482c,
-        type: 2}
-      propertyPath: canAttack
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114489927499820888, guid: 7c1231a914dbfa24dbdccd121a30482c,
         type: 2}
@@ -5066,6 +5015,11 @@ Prefab:
       propertyPath: enemyHealth
       value: 
       objectReference: {fileID: 241821548}
+    - target: {fileID: 114489927499820888, guid: 7c1231a914dbfa24dbdccd121a30482c,
+        type: 2}
+      propertyPath: txtRemaining
+      value: 
+      objectReference: {fileID: 1778463111}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c1231a914dbfa24dbdccd121a30482c, type: 2}
   m_IsPrefabParent: 0

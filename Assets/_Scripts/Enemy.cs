@@ -58,8 +58,6 @@ public class Enemy : MonoBehaviour {
         else {
             agent.isStopped = true;
         }
-        
-        
     }
 
     private void Attacking() {

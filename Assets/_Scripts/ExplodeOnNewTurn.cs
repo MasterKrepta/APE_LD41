@@ -38,7 +38,6 @@ public class ExplodeOnNewTurn : MonoBehaviour {
             IDestructable destructable = collider.GetComponent<IDestructable>();
             
             if (destructable != null) {
-                
                 destructable.TakeDamage(1);
             }
         }

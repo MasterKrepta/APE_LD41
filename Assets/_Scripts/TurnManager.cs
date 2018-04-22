@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class TurnManager : MonoBehaviour {
 
+    SceneManagement sceneManagement;
     #region Singleton
 
     private static TurnManager instance = null;
@@ -47,7 +48,10 @@ public class TurnManager : MonoBehaviour {
     Enemy enemy;
 
     private void Start() {
+        sceneManagement = GetComponent<SceneManagement>();
         enemy = FindObjectOfType<Enemy>();
+        PlayerCam = FindObjectOfType<FirstPersonController>().GetComponentInChildren<Camera>();
+        EnemyCam = FindObjectOfType<Enemy>().GetComponentInChildren<Camera>();
         ResetClock();
         SetCamera();
         
@@ -61,6 +65,13 @@ public class TurnManager : MonoBehaviour {
         }
         foreach (var banana in enemyBoom) {
             banana.ExplodeAtStartOfTurn();
+        }
+
+        if (EnemyCam = null) {
+            CallYouWin();
+        }
+        else if (PlayerCam = null) {
+            CallGameOver();
         }
     }
 
@@ -95,26 +106,42 @@ public class TurnManager : MonoBehaviour {
     }
 
     public void NewTurn() {
+        Debug.Log(PlayerCam.name);
+        
         playerTurn = !playerTurn;
         enemyTurn = !enemyTurn;
         
         SetCamera();
+        
         DestroyActiveBananas();
+        Debug.Log(PlayerCam.name + " on the way out of destroy bannanas");
+
         ResetCanFire();
         
         enemy.OnNewTurn();
     }
 
     private void SetCamera() {
+        PlayerCam = FindObjectOfType<FirstPersonController>().GetComponentInChildren<Camera>();
+        EnemyCam = FindObjectOfType<Enemy>().GetComponentInChildren<Camera>();
+
         camSwitch = !camSwitch;
         PlayerCam.gameObject.SetActive(camSwitch);
         EnemyCam.gameObject.SetActive(!camSwitch);
+
         //playerHealth.enabled = camSwitch;
         //enemyHealth.enabled = !camSwitch;
         //NOTE bullets have been seperated due to a late minute bug - IS NOW LAYER BASED INSIDE OF UNITY
-
+        Debug.Log(PlayerCam.name + " end of set camera");
+        
+    }
+    public void CallYouWin() {
+        sceneManagement.LoadVictory();
     }
 
+    public void CallGameOver() {
+        sceneManagement.LoadGameOver();
+    }
     public bool AcceptInput() {
         if (playerTurn) {
             return true;

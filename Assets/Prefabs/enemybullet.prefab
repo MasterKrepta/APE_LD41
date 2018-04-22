@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 135883324045147658}
   - component: {fileID: 23793243126228592}
   - component: {fileID: 54893012642634892}
-  - component: {fileID: 114668279253569838}
-  m_Layer: 0
+  - component: {fileID: 114127811699610702}
+  m_Layer: 11
   m_Name: enemybullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4087951612199312}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: banana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 4024334865302032}
   - component: {fileID: 33880515835409248}
   - component: {fileID: 23147940460926656}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Stem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4990736445545832}
   - component: {fileID: 33078326966784408}
   - component: {fileID: 23617501862212562}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: banana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114668279253569838
+--- !u!114 &114127811699610702
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -281,12 +281,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1225348670505796}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8723d9c3f3146046a3f512847e6257f, type: 3}
+  m_Script: {fileID: 11500000, guid: e07730ee68f9b914b9ac9fce388018e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   effect: {fileID: 1368683275452956, guid: bf7e0dafafa176c4790519d00548187f, type: 2}
-  explodeTime: 1
-  boomBoomRadius: 3
+  explodeTime: 5
+  boomBoomRadius: 5
 --- !u!135 &135883324045147658
 SphereCollider:
   m_ObjectHideFlags: 1

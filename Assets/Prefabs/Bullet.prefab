@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23793243126228592}
   - component: {fileID: 54893012642634892}
   - component: {fileID: 114668279253569838}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4087951612199312}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: banana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 4024334865302032}
   - component: {fileID: 33880515835409248}
   - component: {fileID: 23147940460926656}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Stem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4990736445545832}
   - component: {fileID: 33078326966784408}
   - component: {fileID: 23617501862212562}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: banana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
