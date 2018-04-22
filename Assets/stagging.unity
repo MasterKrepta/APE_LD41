@@ -523,6 +523,12 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 2b127815fd0f2074eae3a0c6a4786d0b, type: 2}
   m_PrefabInternal: {fileID: 136590075}
+--- !u!114 &137404060 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114587497708663524, guid: 65f3778f4f6017d4ba942b975190e7e1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1969383477}
+  m_Script: {fileID: 11500000, guid: 517729571f8918a4b870a0399c005400, type: 3}
 --- !u!1001 &224707033
 Prefab:
   m_ObjectHideFlags: 0
@@ -619,6 +625,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d85d3a32fb6157d488e31edf82b7b1c4, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &241821548 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114514243440893234, guid: d66e3c7d9e4079d408b6eb97a897ead4,
+    type: 2}
+  m_PrefabInternal: {fileID: 445929308}
+  m_Script: {fileID: 11500000, guid: 517729571f8918a4b870a0399c005400, type: 3}
 --- !u!1001 &246489991
 Prefab:
   m_ObjectHideFlags: 0
@@ -6932,7 +6944,7 @@ Prefab:
     - target: {fileID: 114489927499820888, guid: 7c1231a914dbfa24dbdccd121a30482c,
         type: 2}
       propertyPath: IsTesting
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114489927499820888, guid: 7c1231a914dbfa24dbdccd121a30482c,
         type: 2}
@@ -6949,6 +6961,16 @@ Prefab:
       propertyPath: canAttack
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114489927499820888, guid: 7c1231a914dbfa24dbdccd121a30482c,
+        type: 2}
+      propertyPath: playerHealth
+      value: 
+      objectReference: {fileID: 137404060}
+    - target: {fileID: 114489927499820888, guid: 7c1231a914dbfa24dbdccd121a30482c,
+        type: 2}
+      propertyPath: enemyHealth
+      value: 
+      objectReference: {fileID: 241821548}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c1231a914dbfa24dbdccd121a30482c, type: 2}
   m_IsPrefabParent: 0
