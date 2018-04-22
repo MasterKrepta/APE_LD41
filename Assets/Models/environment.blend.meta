@@ -1,26 +1,33 @@
 fileFormatVersion: 2
-guid: 5528a571aadec9546968ae9e2cb42f58
-timeCreated: 1524331997
+guid: 5d896fd9201ab1e47951752034176e89
+timeCreated: 1524335108
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Cube
-    100004: Cube_001
+    100002: corner
+    100004: Wall
+    100006: wall2
     400000: //RootNode
-    400002: Cube
-    400004: Cube_001
+    400002: corner
+    400004: Wall
+    400006: wall2
     2100000: Material
-    2100002: unnamed
+    2100002: Material_002
+    2100004: Material_003
     2300000: //RootNode
-    2300002: Cube
-    2300004: Cube_001
+    2300002: corner
+    2300004: Wall
+    2300006: wall2
     3300000: //RootNode
-    3300002: Cube
-    3300004: Cube_001
+    3300002: corner
+    3300004: Wall
+    3300006: wall2
     4300000: Cube
-    4300002: Cube_001
+    4300002: Wall
+    4300004: corner
+    4300006: wall2
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
