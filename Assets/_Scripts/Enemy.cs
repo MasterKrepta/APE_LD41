@@ -16,12 +16,13 @@ public class Enemy : MonoBehaviour {
     SphereCollider sphereCollider;
     EnemyState enemyState;
     NavMeshAgent agent;
+    Vector3 newDest;
 
     [SerializeField] float viewRadius = 15f;
     [SerializeField] float patrolDistance = 20f;
     [SerializeField] float attackRadius = 10f;
     [SerializeField] GameObject banana;
-
+    bool hasArrived = false;
     [SerializeField]float strength = 10;
 
     [SerializeField]Transform barrel;
@@ -44,6 +45,9 @@ public class Enemy : MonoBehaviour {
             
             switch (enemyState.Current) {
                 case EnemyState.State.PATROL:
+                    if(agent.remainingDistance == 0) {
+                        hasArrived = true;
+                    }
                     Patrol();
                     break;
                 case EnemyState.State.ATTACKING:
@@ -61,6 +65,7 @@ public class Enemy : MonoBehaviour {
     private void Attacking() {
 
         Transform player = FindObjectOfType<FirstPersonController>().transform;
+        
         if(player != null) {
             transform.LookAt(player);
             agent.SetDestination(player.position);
@@ -72,18 +77,27 @@ public class Enemy : MonoBehaviour {
         }
         
     }
+    public void OnNewTurn() {
+        if(enemyState.Current == EnemyState.State.PATROL) {
+            newDest =  GetNewDestination();
+        }
+    }
+
 
     private void ThrowAtPlayer() {
         anim.Play("Throw");
         agent.isStopped = true;
+        TurnManager.Instance.canAttack = false;
         GameObject go = Instantiate(banana, barrel.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
         go.GetComponent<Rigidbody>().AddForce(barrel.transform.forward * strength, ForceMode.Impulse);
     }
 
     private void Patrol() {
-        Vector3 newDest = GetNewDestination();
+        if (hasArrived || agent.remainingDistance <= 1) {
+            
+            newDest = GetNewDestination();
+        }
         agent.SetDestination(newDest);
-
     }
 
     Vector3 GetNewDestination() {
@@ -92,6 +106,7 @@ public class Enemy : MonoBehaviour {
 
         NavMeshHit hit;
         NavMesh.SamplePosition(randPos, out hit, patrolDistance, 1);
+        hasArrived = false;
         return hit.position;
     }
 
@@ -112,7 +127,9 @@ public class Enemy : MonoBehaviour {
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRadius);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, patrolDistance);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, viewRadius);
     }
-
-    
 }

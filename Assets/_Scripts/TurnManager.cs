@@ -44,8 +44,10 @@ public class TurnManager : MonoBehaviour {
 
     public bool IsTesting = false;
     public bool canAttack = true;
+    Enemy enemy;
 
     private void Start() {
+        enemy = FindObjectOfType<Enemy>();
         ResetClock();
         SetCamera();
         
@@ -91,9 +93,11 @@ public class TurnManager : MonoBehaviour {
     public void NewTurn() {
         playerTurn = !playerTurn;
         enemyTurn = !enemyTurn;
+        DestroyActiveBananas();
         SetCamera();
         ResetCanFire();
-        DestroyActiveBananas();
+        
+        enemy.OnNewTurn();
     }
 
     private void SetCamera() {
