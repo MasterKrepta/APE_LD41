@@ -32,6 +32,8 @@ public class TurnManager : MonoBehaviour {
     [SerializeField] Camera EnemyCam;
     bool camSwitch = false;
 
+    [SerializeField] Health playerHealth;
+    [SerializeField] Health enemyHealth;
     [SerializeField]Text txtRemaining;
     #endregion
 
@@ -98,6 +100,8 @@ public class TurnManager : MonoBehaviour {
         camSwitch = !camSwitch;
         PlayerCam.gameObject.SetActive(camSwitch);
         EnemyCam.gameObject.SetActive(!camSwitch);
+        playerHealth.enabled = camSwitch;
+        enemyHealth.enabled = !camSwitch;
 
     }
 

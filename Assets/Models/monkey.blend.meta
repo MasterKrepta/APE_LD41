@@ -45,6 +45,8 @@ ModelImporter:
     4300000: Cube
     7400000: Default Take
     7400002: gorillaAction
+    7400004: GorillaThrow
+    7400006: gorillaAction_001
     9500000: //RootNode
     13700000: Cube
   externalObjects: {}

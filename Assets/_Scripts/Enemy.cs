@@ -12,7 +12,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class Enemy : MonoBehaviour {
 
     bool acceptEnemyMovement = false;
-
+    Animator anim;
     SphereCollider sphereCollider;
     EnemyState enemyState;
     NavMeshAgent agent;
@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour {
         sphereCollider.radius = viewRadius;
         enemyState = GetComponent<EnemyState>();
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponentInChildren<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -73,6 +74,7 @@ public class Enemy : MonoBehaviour {
     }
 
     private void ThrowAtPlayer() {
+        anim.Play("Throw");
         agent.isStopped = true;
         GameObject go = Instantiate(banana, barrel.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
         go.GetComponent<Rigidbody>().AddForce(barrel.transform.forward * strength, ForceMode.Impulse);
