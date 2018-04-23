@@ -13,14 +13,20 @@ public class SceneManagement : MonoBehaviour {
     }
 
     public void LoadGameOver() {
-        
+        TurnManager.Instance.gameOver = true;
         SceneManager.LoadScene(2);
     }
     public void LoadVictory() {
+        TurnManager.Instance.gameOver = true;
         SceneManager.LoadScene(3);
     }
 
     public void RestartGame() {
+        TurnManager.Instance.gameOver = false;
+        SceneManager.LoadScene(1);
+    }
+    public void StartGame() {
+        
         SceneManager.LoadScene(1);
     }
 }

@@ -58,9 +58,10 @@ MonoBehaviour:
   playerHealth: {fileID: 0}
   enemyHealth: {fileID: 0}
   txtRemaining: {fileID: 0}
-  timeToNextTurn: 2
+  timeToNextTurn: 3
   playerTurn: 1
   enemyTurn: 0
+  gameOver: 0
   IsTesting: 0
   canAttack: 1
 --- !u!114 &114502298502211628

@@ -844,7 +844,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4260297751679432, guid: d66e3c7d9e4079d408b6eb97a897ead4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 49.5
+      value: 41.76
       objectReference: {fileID: 0}
     - target: {fileID: 4260297751679432, guid: d66e3c7d9e4079d408b6eb97a897ead4, type: 2}
       propertyPath: m_LocalPosition.y
@@ -852,7 +852,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4260297751679432, guid: d66e3c7d9e4079d408b6eb97a897ead4, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 27
+      value: 37.97
       objectReference: {fileID: 0}
     - target: {fileID: 4260297751679432, guid: d66e3c7d9e4079d408b6eb97a897ead4, type: 2}
       propertyPath: m_LocalRotation.x
@@ -883,6 +883,16 @@ Prefab:
         type: 2}
       propertyPath: maxHealth
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114200460351622106, guid: d66e3c7d9e4079d408b6eb97a897ead4,
+        type: 2}
+      propertyPath: attackRadius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114200460351622106, guid: d66e3c7d9e4079d408b6eb97a897ead4,
+        type: 2}
+      propertyPath: strength
+      value: 22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d66e3c7d9e4079d408b6eb97a897ead4, type: 2}
@@ -3457,6 +3467,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4298449314701788, guid: 2651d4ac71912fa43a5ffee46e500340,
     type: 2}
   m_PrefabInternal: {fileID: 1538930794}
+--- !u!20 &1581324853 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 20796612463744980, guid: d66e3c7d9e4079d408b6eb97a897ead4,
+    type: 2}
+  m_PrefabInternal: {fileID: 445929308}
 --- !u!4 &1595327738 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4445947222590400, guid: 9e9510493a930614da005ccbe3d669b9,
@@ -4243,6 +4258,11 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: ef1258003f1e05f4e9e2396fb48fdca9, type: 3}
+--- !u!20 &1844732306 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 20279514487250332, guid: 65f3778f4f6017d4ba942b975190e7e1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1969383477}
 --- !u!1001 &1847789869
 Prefab:
   m_ObjectHideFlags: 0
@@ -4650,7 +4670,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4862860859028424, guid: 65f3778f4f6017d4ba942b975190e7e1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -51.14
+      value: -51.06
       objectReference: {fileID: 0}
     - target: {fileID: 4862860859028424, guid: 65f3778f4f6017d4ba942b975190e7e1, type: 2}
       propertyPath: m_LocalPosition.y
@@ -4658,7 +4678,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4862860859028424, guid: 65f3778f4f6017d4ba942b975190e7e1, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -51.87
+      value: -50.78
       objectReference: {fileID: 0}
     - target: {fileID: 4862860859028424, guid: 65f3778f4f6017d4ba942b975190e7e1, type: 2}
       propertyPath: m_LocalRotation.x
@@ -4685,10 +4705,15 @@ Prefab:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1237038398}
-    - target: {fileID: 114587497708663524, guid: 65f3778f4f6017d4ba942b975190e7e1,
+    - target: {fileID: 143243445849692416, guid: 65f3778f4f6017d4ba942b975190e7e1,
         type: 2}
-      propertyPath: maxHealth
-      value: 10
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 143243445849692416, guid: 65f3778f4f6017d4ba942b975190e7e1,
+        type: 2}
+      propertyPath: m_Height
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 65f3778f4f6017d4ba942b975190e7e1, type: 2}
@@ -4999,12 +5024,12 @@ Prefab:
         type: 2}
       propertyPath: PlayerCam
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1844732306}
     - target: {fileID: 114489927499820888, guid: 7c1231a914dbfa24dbdccd121a30482c,
         type: 2}
       propertyPath: EnemyCam
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1581324853}
     - target: {fileID: 114489927499820888, guid: 7c1231a914dbfa24dbdccd121a30482c,
         type: 2}
       propertyPath: playerHealth

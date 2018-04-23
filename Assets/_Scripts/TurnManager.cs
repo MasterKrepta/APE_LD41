@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityStandardAssets.Characters.FirstPerson;
+
 
 public class TurnManager : MonoBehaviour {
 
-    SceneManagement sceneManagement;
     #region Singleton
 
     private static TurnManager instance = null;
@@ -27,6 +26,8 @@ public class TurnManager : MonoBehaviour {
     }
     #endregion
 
+    SceneManagement sceneManagement;
+
     #region UI Stuff
     [SerializeField] Camera activeCamera;
     [SerializeField] Camera PlayerCam;
@@ -35,26 +36,24 @@ public class TurnManager : MonoBehaviour {
 
     [SerializeField] Health playerHealth;
     [SerializeField] Health enemyHealth;
-    [SerializeField]Text txtRemaining;
+    [SerializeField] Text txtRemaining;
     #endregion
 
     [SerializeField] float timeToNextTurn = 7f;
     float currentTime;
     [SerializeField] bool playerTurn = true;
     [SerializeField] bool enemyTurn = false;
-
+    public bool gameOver = false;
     public bool IsTesting = false;
     public bool canAttack = true;
-    Enemy enemy;
 
     private void Start() {
+        gameOver = false;
         sceneManagement = GetComponent<SceneManagement>();
-        enemy = FindObjectOfType<Enemy>();
-        PlayerCam = FindObjectOfType<FirstPersonController>().GetComponentInChildren<Camera>();
-        EnemyCam = FindObjectOfType<Enemy>().GetComponentInChildren<Camera>();
+        txtRemaining = FindObjectOfType<Text>();
         ResetClock();
         SetCamera();
-        
+
     }
 
     private void DestroyActiveBananas() {
@@ -66,19 +65,25 @@ public class TurnManager : MonoBehaviour {
         foreach (var banana in enemyBoom) {
             banana.ExplodeAtStartOfTurn();
         }
-
-        if (EnemyCam = null) {
-            CallYouWin();
-        }
-        else if (PlayerCam = null) {
-            CallGameOver();
-        }
     }
 
-    
 
-    void Update () {
-        if (!IsTesting) {
+
+    void Update() {
+        if (gameOver) {
+            if (Input.GetKeyDown(KeyCode.Return)) {
+                CallRestart();
+            }
+        }
+        else {
+            if (Input.GetKeyDown(KeyCode.KeypadEnter)) {
+                
+                CallGameOver();
+            }
+        }
+
+        if (!IsTesting && !gameOver) {
+
             currentTime -= Time.deltaTime;
             txtRemaining.text = "Time Remaining: " + (currentTime % 60).ToString("00");
             if (currentTime <= 0) {
@@ -91,8 +96,8 @@ public class TurnManager : MonoBehaviour {
             enemyTurn = true;
             canAttack = true;
         }
-        
-	}
+
+    }
     public void HasFired() {
         canAttack = false;
     }
@@ -106,46 +111,37 @@ public class TurnManager : MonoBehaviour {
     }
 
     public void NewTurn() {
-        Debug.Log(PlayerCam.name);
-        
-        playerTurn = !playerTurn;
-        enemyTurn = !enemyTurn;
-        
-        SetCamera();
-        
-        DestroyActiveBananas();
-        Debug.Log(PlayerCam.name + " on the way out of destroy bannanas");
+        if (!gameOver) {
+            playerTurn = !playerTurn;
+            enemyTurn = !enemyTurn;
+            SetCamera();
+            ResetCanFire();
+            DestroyActiveBananas();
+            if (EnemyCam == null) {
+                CallYouWin();
+            }
+            else if (PlayerCam == null) {
+                CallGameOver();
+            }
+        }
 
-        ResetCanFire();
-        
-        enemy.OnNewTurn();
     }
 
     private void SetCamera() {
-        PlayerCam = FindObjectOfType<FirstPersonController>().GetComponentInChildren<Camera>();
-        EnemyCam = FindObjectOfType<Enemy>().GetComponentInChildren<Camera>();
-
         camSwitch = !camSwitch;
         PlayerCam.gameObject.SetActive(camSwitch);
         EnemyCam.gameObject.SetActive(!camSwitch);
+        playerHealth.enabled = camSwitch;
+        enemyHealth.enabled = !camSwitch;
 
-        //playerHealth.enabled = camSwitch;
-        //enemyHealth.enabled = !camSwitch;
-        //NOTE bullets have been seperated due to a late minute bug - IS NOW LAYER BASED INSIDE OF UNITY
-        Debug.Log(PlayerCam.name + " end of set camera");
-        
-    }
-    public void CallYouWin() {
-        sceneManagement.LoadVictory();
+
     }
 
-    public void CallGameOver() {
-        sceneManagement.LoadGameOver();
-    }
     public bool AcceptInput() {
         if (playerTurn) {
             return true;
-        }else
+        }
+        else
             return false;
     }
     public bool AcceptAIInput() {
@@ -155,4 +151,19 @@ public class TurnManager : MonoBehaviour {
         else
             return false;
     }
+
+    public void CallYouWin() {
+        sceneManagement.LoadVictory();
+    }
+    public void CallGameOver() {
+        sceneManagement.LoadGameOver();
+    }
+    public void CallRestart() {
+        sceneManagement.RestartGame();
+    }
 }
+
+
+
+
+

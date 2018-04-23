@@ -22,6 +22,6 @@ public class EnemyState : MonoBehaviour {
         else {
             Current = State.PATROL;
         }
-        Debug.Log("State Changed to: " + Current);
+        //Debug.Log("State Changed to: " + Current);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class enemyBoom : MonoBehaviour {
+
     
     [SerializeField]GameObject effect;
 
@@ -14,6 +15,7 @@ public class enemyBoom : MonoBehaviour {
     void Start () {
         if(TurnManager.Instance.IsTesting)
             StartCoroutine(Explode());
+        
 	}
 
     IEnumerator Explode() {

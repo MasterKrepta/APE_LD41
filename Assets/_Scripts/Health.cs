@@ -11,14 +11,25 @@ public class Health : MonoBehaviour, IDestructable {
     
 
     public void Kill() {
+        //TODO make this not the wrong way, but you are out of time
+        if(this.gameObject.GetComponent<Enemy>() != null) {
+            TurnManager.Instance.CallYouWin();
+        }
+        else {
+            TurnManager.Instance.CallGameOver();
+        }
+        
         Destroy(gameObject);
     }
 
     public void TakeDamage(float amount) {
-        currentHealth -= amount;
-        if(currentHealth <= 0) {
-            Kill();
+        if (this.enabled) {
+            currentHealth -= amount;
+            if (currentHealth <= 0) {
+                Kill();
+            }
         }
+        
     }
     private void OnEnable() {
         //Debug.Log("enabled on " + this.gameObject);
