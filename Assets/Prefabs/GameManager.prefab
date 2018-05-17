@@ -58,7 +58,7 @@ MonoBehaviour:
   playerHealth: {fileID: 0}
   enemyHealth: {fileID: 0}
   txtRemaining: {fileID: 0}
-  timeToNextTurn: 3
+  timeToNextTurn: 7
   playerTurn: 1
   enemyTurn: 0
   gameOver: 0
